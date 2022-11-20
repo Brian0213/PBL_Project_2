@@ -2,7 +2,7 @@
 
 **Preparing prerequisites**
 
-- Create a new EC2 Instance of t2.nano family with Ubuntu Server 22.04 LTS (HVM) image.
+- Create a new EC2 Instance of t2.nano family with Ubuntu Server 20.04 LTS (HVM) image.
 
 1. **Installing The NGINX Web Server**
 
@@ -37,8 +37,8 @@ Open a web browser of your choice and try to access following url:
 
 ![Nginx Webserver Status](./image/nginx-webserver-success-status.PNG)
 
-Now it is time for us to test how our Nginx server can respond to requests from the Internet.
-Open a web browser of your choice and try to access following url:
+- Now it is time for us to test how our Nginx server can respond to requests from the Internet.
+- Open a web browser of your choice and try to access following url:
 
 [Nginx Http Url](http://18.222.189.33:80)
 
@@ -52,14 +52,13 @@ Open a web browser of your choice and try to access following url:
 
 ![To Retrieve Public IP Status](./image/to-retrieve-public-ip-status.PNG)
 
+2.**Installing MySql**
 
-2. **Installing MySql**
-
-#Again, use ‘apt’ to acquire and install this software:
+- Again, use ‘apt’ to acquire and install this software:
 
 `sudo apt install mysql-server`
 
-#When prompted, confirm installation by typing Y, and then ENTER.
+- When prompted, confirm installation by typing Y, and then ENTER.
 
 ![Prompt 'Y' Enter](./image/prompt-y-enter-status.PNG)
 
@@ -69,23 +68,23 @@ Open a web browser of your choice and try to access following url:
 
 `sudo mysql`
 
-This will connect to the MySQL server as the administrative database user root, which is inferred by the use of sudo when running this command. You should see output like this:
+- This will connect to the MySQL server as the administrative database user root, which is inferred by the use of sudo when running this command. You should see output like this:
 
 ![Output MySql Connect Message](./image/output-mysql-connect.PNG)
 
 - It’s recommended that you run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system. Before running the script you will set a password for the root user, using mysql_native_password as default authentication method. We’re defining this user’s password as PassWord.1:
 
-`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';` 
+`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';`
 
 ![Password Authentication](./image/password-authentication-status.PNG)
 
-Exit the MySQL shell with:
+- Exit the MySQL shell with:
 
 `exit`
 
 ![Exit MySql Status](./image/exit-status.PNG)
 
-Start the interactive script by running:
+- Start the interactive script by running:
 
 `sudo mysql_secure_installation`
 
@@ -95,25 +94,23 @@ Start the interactive script by running:
 
 ![MySql Secure Installation](./image/mysql-secure-installation-output3.PNG)
 
-When you’re finished, test if you’re able to log in to the MySQL console by typing:
+- When you’re finished, test if you’re able to log in to the MySQL console by typing:
 
 `sudo mysql -p`
 
 ![MySql Secure Installation](./image/mysql-console-login-output3.PNG)
 
-To exit the MySQL console, type:
+- To exit the MySQL console, type:
 
 `exit`
 
 ![MySql Exit Output](./image/mysql-exit-output.PNG)
 
+3.**Installing PHP**
 
+- You have Nginx installed to serve your content and MySQL installed to store and manage your data. Now you can install PHP to process code and generate dynamic content for the web server.
 
-3. **Installing PHP**
-
-#You have Nginx installed to serve your content and MySQL installed to store and manage your data. Now you can install PHP to process code and generate dynamic content for the web server.
-
-While Apache embeds the PHP interpreter in each request, Nginx requires an external program to handle PHP processing and act as a bridge between the PHP interpreter itself and the web server. This allows for a better overall performance in most PHP-based websites, but it requires additional configuration. You’ll need to install php-fpm, which stands for “PHP fastCGI process manager”, and tell Nginx to pass PHP requests to this software for processing. Additionally, you’ll need php-mysql, a PHP module that allows PHP to communicate with MySQL-based databases. Core PHP packages will automatically be installed as dependencies.
+- While Apache embeds the PHP interpreter in each request, Nginx requires an external program to handle PHP processing and act as a bridge between the PHP interpreter itself and the web server. This allows for a better overall performance in most PHP-based websites, but it requires additional configuration. You’ll need to install php-fpm, which stands for “PHP fastCGI process manager”, and tell Nginx to pass PHP requests to this software for processing. Additionally, you’ll need php-mysql, a PHP module that allows PHP to communicate with MySQL-based databases. Core PHP packages will automatically be installed as dependencies.
 
 - To install these 2 packages at once, run:
 
@@ -121,8 +118,7 @@ While Apache embeds the PHP interpreter in each request, Nginx requires an exter
 
 ![Install PHP Output](./image/php-install-output.PNG)
 
-
-4. **Configuring Nginx to Use PHP Processor**
+4.**Configuring Nginx to Use PHP Processor**
 
 - When using the Nginx web server, we can create server blocks (similar to virtual hosts in Apache) to encapsulate configuration details and host more than one domain on a single server. In this guide, we will use projectLEMP as an example domain name.
 
@@ -134,17 +130,17 @@ On Ubuntu 20.04, Nginx has one server block enabled by default and is configured
 
 ![ProjectLEMP Create Directory Output](./image/lemp-directory-create-output.PNG)
 
-Next, assign ownership of the directory with the $USER environment variable, which will reference your current system user:
+- Next, assign ownership of the directory with the $USER environment variable, which will reference your current system user:
 
 `sudo chown -R $USER:$USER /var/www/projectLEMP`
 
 ![Owner Directory User Environment Variable](./image/assign-owner-to-directory.PNG)
 
-Then, open a new configuration file in Nginx’s sites-available directory using your preferred command-line editor. Here, we’ll use nano:
+- Then, open a new configuration file in Nginx’s sites-available directory using your preferred command-line editor. Here, we’ll use nano:
 
 `sudo nano /etc/nginx/sites-available/projectLEMP`
 
-This will create a new blank file. Paste in the following bare-bones configuration:
+- This will create a new blank file. Paste in the following bare-bones configuration:
 
 ![Nginx Configuration Page](./image/nginx-configuration-page.PNG)
 
@@ -196,9 +192,7 @@ root — Defines the document root where the files served by this website are st
 
 ![Website Ip Output](./image/website-url-ip-output.PNG)
 
-
-
-5. **Testing PHP with Nginx**
+5.**Testing PHP with Nginx**
 
 - At this point, your LAMP stack is completely installed and fully operational.
 
@@ -227,8 +221,7 @@ phpinfo();`
 
 ![Directory Removal Output](./image/directory-removal-output.PNG)
 
-
-6. **Retrieving data from MySQL database with PHP**
+6.**Retrieving data from MySQL database with PHP**
 
 - In this step you will create a test database (DB) with simple "To do list" and configure access to it, so the Nginx website would be able to query data from the DB and display it.
 
@@ -244,7 +237,7 @@ First, connect to the MySQL console using the root account:
 
 To create a new database, run the following command from your MySQL console:
 
-`mysql> CREATE DATABASE `example_database`;`
+`CREATE DATABASE example_database;`
 
 ![Database Create Output](./image/database-create-status.PNG)
 
@@ -252,7 +245,7 @@ Now you can create a new user and grant him full privileges on the database you 
 
 The following command creates a new user named example_user, using mysql_native_password as default authentication method. We’re defining this user’s password as password, but you should replace this value with a secure password of your own choosing.
 
-`mysql>  CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';`
+`CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';`
 
 ![Mysql User Credentials](./image/mysql-user-password-create-status.PNG)
 
@@ -282,7 +275,7 @@ Notice the -p flag in this command, which will prompt you for the password used 
 
 ![Show Database](./image/show-database-info.PNG)
 
-Next, we’ll create a test table named todo_list. From the MySQL console, run the following statement:
+- Next, we’ll create a test table named todo_list. From the MySQL console, run the following statement:
 
 `CREATE TABLE example_database.todo_list (
 mysql>     item_id INT AUTO_INCREMENT,
@@ -292,25 +285,25 @@ mysql> );`
 
 ![Todo List Table](./image/todo-list-table-status.PNG)
 
-Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different VALUES:
+- Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different VALUES:
 
 `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`
 
 ![Rows Created in the Todo list Table](./image/rows-created-in-table.PNG)
 
-To confirm that the data was successfully saved to your table, run:
+- To confirm that the data was successfully saved to your table, run:
 
 `SELECT * FROM example_database.todo_list;`
 
 ![Select Query Output](./image/select-query-output.PNG)
 
-After confirming that you have valid data in your test table, you can exit the MySQL console:
+- After confirming that you have valid data in your test table, you can exit the MySQL console:
 
 `exit`
 
 ![Mysql Exit Console](./image/exit-mysql-output.PNG)
 
-Now you can create a PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use vi for that:
+- Now you can create a PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use vi for that:
 
 `nano /var/www/projectLEMP/todo_list.php`
 
