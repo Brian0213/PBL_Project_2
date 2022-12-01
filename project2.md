@@ -1,6 +1,6 @@
-## Documentation for Project 2: LEMP STACK IMPLEMENTATION 
+# Documentation for Project 2: LEMP STACK IMPLEMENTATION 
 
-**Preparing prerequisites**
+## Preparing prerequisites
 
 - Create a new EC2 Instance of t2.nano family with Ubuntu Server 20.04 LTS (HVM) image.
 
