@@ -50,7 +50,7 @@ Open a web browser of your choice and try to access following url:
 
 `curl -s http://169.254.169.254/latest/meta-data/public-ipv4`
 
-![To Retrieve Public IP Status](./image/to-retrieve-public-ip-status.PNG)
+![To Retrieve Public IP Status](./image/to-retrieve-public-ip.PNG)
 
 2.**Installing MySql**
 
@@ -60,7 +60,7 @@ Open a web browser of your choice and try to access following url:
 
 - When prompted, confirm installation by typing Y, and then ENTER.
 
-![Prompt 'Y' Enter](./image/prompt-y-enter-status.PNG)
+![Prompt 'Y' Enter](./image/prompt-y-enter.PNG)
 
 ![Install MySql Server](./image/install-mysql-server-success.PNG)
 
@@ -98,7 +98,7 @@ Open a web browser of your choice and try to access following url:
 
 `sudo mysql -p`
 
-![MySql Secure Installation](./image/mysql-console-login-output3.PNG)
+![MySql Secure Installation](./image/mysql-console-login-output.PNG)
 
 - To exit the MySQL console, type:
 
@@ -219,7 +219,7 @@ phpinfo();`
 
 `sudo rm /var/www/projectLEMP/info.php`
 
-![Directory Removal Output](./image/directory-removal-output.PNG)
+![Directory Removal Output](./image/directory-remove-output.PNG)
 
 6.**Retrieving data from MySQL database with PHP**
 
@@ -253,7 +253,7 @@ Now we need to give this user permission over the example_database database:
 
 `GRANT ALL ON example_database.* TO 'example_user'@'%';`
 
-![Mysql User Access](./image/user-access-grant-status.PNG)
+![Mysql User Access](./image/user-access-grant-output.PNG)
 
 - This will give the example_user user full privileges over the example_database database, while preventing this user from creating or modifying other databases on your server.
 
@@ -273,7 +273,7 @@ Notice the -p flag in this command, which will prompt you for the password used 
 
 `SHOW DATABASES;`
 
-![Show Database](./image/show-database-info.PNG)
+![Show Database](./image/show-databases-info.PNG)
 
 - Next, we’ll create a test table named todo_list. From the MySQL console, run the following statement:
 
